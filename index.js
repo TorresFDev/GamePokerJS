@@ -5,7 +5,9 @@ while(usuario !== "facundo"){
         alert("Bienvenido Facundo")
     }else{
         alert("usted no es facundo por favor ingrese su nombre")
-        usuario === prompt("Ingrese Nombre del Jugador")}
+        usuario === prompt("Ingrese Nombre del Jugador")
+        break
+        }
 }
 
 
@@ -21,10 +23,18 @@ function barajarCartas(){
 function cartasAleatorias(cartas) {
     for (let i = 0; i <= 1; i++) {
         let seleccionarCarta = Math.floor(Math.random() * cartas.length);
-        console.log(cartas[seleccionarCarta]);
+        console.log(`${usuario } tiene: ${cartas[seleccionarCarta]}`);
     }
 }
 cartasAleatorias(cartas)
+
+function croupier(cartas) {
+    for (let i = 0; i <= 4; i++) {
+        let seleccionarCarta = Math.floor(Math.random() * cartas.length);
+        console.log("el croupier a sacado las siguienttes cartas : " + cartas[seleccionarCarta]);
+    }
+}
+croupier(cartas)
 
 
 
