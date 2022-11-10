@@ -77,3 +77,20 @@
 
 // const Croupier1 = new Croupier(cartas)
 // console.log(Croupier1.barajarCartas())
+
+document.getElementById('form').addEventListener('submit', (e) => {
+    e.preventDefault();
+
+
+    let nombre = document.getElementById('nombre').value;
+    let apellido = document.getElementById('apellido').value;
+    let edad = document.getElementById('edad').value;
+    let email = document.getElementById('email').value;
+    let password = document.getElementById('passsword');
+
+    let expRegNombre = /^\s+$/;
+
+    if(nombre == null || nombre.lenght == 0 || expRegNombre.test(nombre)){
+        alert('nombre invalido')
+    }
+})

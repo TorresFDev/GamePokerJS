@@ -86,7 +86,14 @@ label{
 
 input:focus~.barra::before{
     width: 100%
+}
 
+.warnings{
+    width: 200px;
+    text-align: center;
+    margin: auto;
+    color: #731515;
+    padding-top: 20px;
 }
 
 button{
