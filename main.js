@@ -1,17 +1,18 @@
-                    
+//Codigo para el formulario,validaciones simples uso de sweet alert.
+
 document.getElementById('form').addEventListener('submit', (e) => {
     e.preventDefault();
- 
- 
-const nombre = document.getElementById('nombre').value.toLowerCase();
-const apellido = document.getElementById('apellido').value.toLowerCase();
-const edad = document.getElementById('edad').value;
-const email = document.getElementById('email').value.toLowerCase();
-const password = document.getElementById('password');
- 
-const expReg = /^\s+$/;
-const expRegEmail =  !(/^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/.test(email));
- 
+    
+    
+    const nombre = document.getElementById('nombre').value.toLowerCase();
+    const apellido = document.getElementById('apellido').value.toLowerCase();
+    const edad = document.getElementById('edad').value;
+    const email = document.getElementById('email').value.toLowerCase();
+    const password = document.getElementById('password');
+    
+    const expReg = /^\s+$/;
+    const expRegEmail =  !(/^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/.test(email));
+    
     if(nombre == "" || nombre.lenght == 0 || nombre.lenght < 6 || expReg.test(nombre)){
         Swal.fire({
             position: 'center',
@@ -19,11 +20,11 @@ const expRegEmail =  !(/^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{
             title: 'El campo nombre no es valido',
             showConfirmButton: false,
             timer: 1000
-          })
+        })
         document.getElementById('nombre')
         return false;
     }
- 
+    
     else if(apellido == "" || apellido.lenght == 0 || expReg.test(apellido)){
         Swal.fire({
             position: 'center',
@@ -31,7 +32,7 @@ const expRegEmail =  !(/^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{
             title: 'El campo apellido no es valido',
             showConfirmButton: false,
             timer: 1000
-          })
+        })
         document.getElementById('apellido')
         return false;
     }
@@ -42,7 +43,7 @@ const expRegEmail =  !(/^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{
             title: 'El campo edad no es valido.',
             showConfirmButton: false,
             timer: 1000
-          })
+        })
         document.getElementById('edad')
         return false;
     }
@@ -53,26 +54,99 @@ const expRegEmail =  !(/^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{
             title: 'El campo email no es valido',
             showConfirmButton: false,
             timer: 1000
-          })
+        })
         document.getElementById('email')
         return false;
     }
     else{
-        Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Se ha registrado con EXITO',
-            showConfirmButton: false,
-            timer: 1500
-          })
-        document.getElementById('nombre').value="";
-        document.getElementById('apellido').value="";
-        document.getElementById('edad').value="";
-        document.getElementById('email').value="";
-        document.getElementById('password').value="";
-    }
-    })
+        const botonRegistrar = document.getElementById("registrar");
+        botonRegistrar.onclick = () => {
 
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Se ha registrado con EXITO',
+                showConfirmButton: false,
+                timer: 1500,
+            })
+            
+            
+            
+        const divForm = document.getElementById('formRegistro');
+        const divInicio = document.getElementById('divInicio');
+            
+                
+        if(nombre.value || apellido.value || edad.value || email.value || password.value) 
+            {const usuario = {
+                nombre: nombre.value,
+                apellido: apellido.value,
+                }
+                localStorage.setItem('usuario', JSON.stringify(usuario))
+                divForm.remove()
+                
+                const nombreInicio = document.createElement('h2')
+                const botonInicio = document.createElement ('button')
+                const botonInicio2 = document.createElement ('button')
+                
+                
+                nombreInicio.className = 'nombreInicio'
+                nombreInicio.innerText=`${usuario.nombre} quieres empezar a jugar?` 
+                botonInicio.innerText=`SI`
+                botonInicio2.innerText=`SALIR`
+                
+                divInicio.append(nombreInicio)
+                divInicio.append(botonInicio)
+                divInicio.append(botonInicio2)
+            }}}
+            
+
+
+
+
+        // document.getElementById('nombre').value="";
+        // document.getElementById('apellido').value="";
+        // document.getElementById('edad').value="";
+        // document.getElementById('email').value="";
+        // document.getElementById('password').value="";
+    }
+
+)
+    
+
+
+//llamada al boton almacenar en localStorage y borrar form de registro
+
+// const botonRegistrar = document.getElementById("registrar");
+// const divForm = document.getElementById('formRegistro');
+// const divInicio = document.getElementById('divInicio');
+
+//     botonRegistrar.onclick = () => {
+//         if(nombre.value || apellido.value || edad.value || email.value || password.value) 
+//         {const usuario = {
+//                 nombre: nombre.value,
+//                 apellido: apellido.value,
+//                 }
+//                 localStorage.setItem('usuario', JSON.stringify(usuario));
+//                 divForm.remove()
+
+//         const nombreInicio = document.createElement('h2')
+//         const botonInicio = document.createElement ('button')
+//         const botonInicio2 = document.createElement ('button')
+
+
+//         nombreInicio.className = 'nombreInicio'
+//         nombreInicio.innerText=`${usuario.nombre} quieres empezar a jugar?` 
+//         botonInicio.innerText=`SI`
+//         botonInicio2.innerText=`SALIR`
+
+//         divInicio.append(nombreInicio)
+//         divInicio.append(botonInicio)
+//         divInicio.append(botonInicio2)
+// }
+
+//         }
+
+//Comienzo de codigo de juego
 
 const simbolos = ["-Corazones", "-Trebol", "-Picas", "-Diamantes"]
 const valores = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
