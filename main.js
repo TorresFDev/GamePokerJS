@@ -1,5 +1,4 @@
 //Codigo para el formulario,validaciones simples uso de sweet alert.
-
 document.getElementById('form').addEventListener('submit', (e) => {
     e.preventDefault();
     
@@ -9,142 +8,46 @@ document.getElementById('form').addEventListener('submit', (e) => {
     const edad = document.getElementById('edad').value;
     const email = document.getElementById('email').value.toLowerCase();
     const password = document.getElementById('password');
-    
-    const expReg = /^\s+$/;
-    const expRegEmail =  !(/^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/.test(email));
-    
-    if(nombre == "" || nombre.lenght == 0 || nombre.lenght < 6 || expReg.test(nombre)){
-        Swal.fire({
-            position: 'center',
-            icon: 'error',
-            title: 'El campo nombre no es valido',
-            showConfirmButton: false,
-            timer: 1000
-        })
-        document.getElementById('nombre')
-        return false;
-    }
-    
-    else if(apellido == "" || apellido.lenght == 0 || expReg.test(apellido)){
-        Swal.fire({
-            position: 'center',
-            icon: 'error',
-            title: 'El campo apellido no es valido',
-            showConfirmButton: false,
-            timer: 1000
-        })
-        document.getElementById('apellido')
-        return false;
-    }
-    else if (edad == "" || edad== 0 || isNaN(edad) ){
-        Swal.fire({
-            position: 'center',
-            icon: 'error',
-            title: 'El campo edad no es valido.',
-            showConfirmButton: false,
-            timer: 1000
-        })
-        document.getElementById('edad')
-        return false;
-    }
-    else if(expRegEmail){
-        Swal.fire({
-            position: 'center',
-            icon: 'error',
-            title: 'El campo email no es valido',
-            showConfirmButton: false,
-            timer: 1000
-        })
-        document.getElementById('email')
-        return false;
-    }
-    else{
-        const botonRegistrar = document.getElementById("registrar");
-        botonRegistrar.onclick = () => {
+    const divForm = document.getElementById('formRegistro');
+    const divInicio = document.getElementById('divInicio');
 
+        
+
+        if(nombre.value || apellido.value || edad.value || email.value || password.value)
+        
             Swal.fire({
-                position: 'center',
-                icon: 'success',
-                title: 'Se ha registrado con EXITO',
-                showConfirmButton: false,
-                timer: 1500,
+            position: 'center',
+            icon: 'success',
+            title: 'Registro Completo',
+            showConfirmButton: false,
+            timer: 1500
             })
-            
-            
-            
-        const divForm = document.getElementById('formRegistro');
-        const divInicio = document.getElementById('divInicio');
-            
-                
-        if(nombre.value || apellido.value || edad.value || email.value || password.value) 
+
             {const usuario = {
                 nombre: nombre.value,
                 apellido: apellido.value,
-                }
-                localStorage.setItem('usuario', JSON.stringify(usuario))
+            }
+            
+            localStorage.setItem('usuario', JSON.stringify(usuario))
+
+
+
                 divForm.remove()
                 
                 const nombreInicio = document.createElement('h2')
-                const botonInicio = document.createElement ('button')
-                const botonInicio2 = document.createElement ('button')
+                const botonSi = document.createElement ('button')
+                const botonSalir = document.createElement ('button')
                 
                 
                 nombreInicio.className = 'nombreInicio'
                 nombreInicio.innerText=`${usuario.nombre} quieres empezar a jugar?` 
-                botonInicio.innerText=`SI`
-                botonInicio2.innerText=`SALIR`
+                botonSi.innerText=`SI`
+                botonSalir.innerText=`SALIR`
                 
                 divInicio.append(nombreInicio)
-                divInicio.append(botonInicio)
-                divInicio.append(botonInicio2)
-            }}}
-            
-
-
-
-
-        // document.getElementById('nombre').value="";
-        // document.getElementById('apellido').value="";
-        // document.getElementById('edad').value="";
-        // document.getElementById('email').value="";
-        // document.getElementById('password').value="";
-    }
-
-)
-    
-
-
-//llamada al boton almacenar en localStorage y borrar form de registro
-
-// const botonRegistrar = document.getElementById("registrar");
-// const divForm = document.getElementById('formRegistro');
-// const divInicio = document.getElementById('divInicio');
-
-//     botonRegistrar.onclick = () => {
-//         if(nombre.value || apellido.value || edad.value || email.value || password.value) 
-//         {const usuario = {
-//                 nombre: nombre.value,
-//                 apellido: apellido.value,
-//                 }
-//                 localStorage.setItem('usuario', JSON.stringify(usuario));
-//                 divForm.remove()
-
-//         const nombreInicio = document.createElement('h2')
-//         const botonInicio = document.createElement ('button')
-//         const botonInicio2 = document.createElement ('button')
-
-
-//         nombreInicio.className = 'nombreInicio'
-//         nombreInicio.innerText=`${usuario.nombre} quieres empezar a jugar?` 
-//         botonInicio.innerText=`SI`
-//         botonInicio2.innerText=`SALIR`
-
-//         divInicio.append(nombreInicio)
-//         divInicio.append(botonInicio)
-//         divInicio.append(botonInicio2)
-// }
-
-//         }
+                divInicio.append(botonSi)
+                divInicio.append(botonSalir)
+                
 
 //Comienzo de codigo de juego
 
@@ -152,62 +55,68 @@ const simbolos = ["-Corazones", "-Trebol", "-Picas", "-Diamantes"]
 const valores = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
 const combinations = []
 
-class Mazo {
-    constructor(cartas = nuevoMazo()){
-    this.cartas=cartas}
+
+botonSalir.onclick=() => {
+    window.location.href="https://github.com/TorresFDev"
 }
 
-class Carta{
-    contructor(simbolo,valor){
-        this.simbolo = simbolo
-        this.valor = valor
-    }
-}
+//inicio del juego al tocar el boton SI
+botonSi.onclick = () =>{
+            
+    class Mazo {
+        constructor(cartas = nuevoMazo()){
+            this.cartas=cartas}
+        }
 
-class Jugador{
-    constructor(nombre,apellido,alias,fichas){
-    this.nombre= nombre
-    this.apellido= apellido
-    this.alias= alias
-    this.fichas = fichas
-    }
-}
+    class Carta{
+        contructor(simbolo,valor){
+            this.simbolo = simbolo
+            this.valor = valor
+        }}
 
-const jugador1 = new Jugador( "Pedro", "Picapiedras", "Pedrito", 2000)
-console.log(jugador1)
+    class Jugador{
+        constructor(nombre,apellido,alias,fichas){
+            this.nombre= nombre
+            this.apellido= apellido
+            this.alias= alias
+            this.fichas = fichas
+        }}
+
+        const jugador1 = new Jugador( "Pedro", "Picapiedras", "Pedrito", 2000)
+        console.log(jugador1)
 
 
 
 
-function mezclar(){
-    combinations.sort(()=> Math.random()- 0.5)
-    return combinations
-}
+    function mezclar(){
+        combinations.sort(()=> Math.random()- 0.5)
+        return combinations
+        }
 
-function nuevoMazo(){
-    simbolos.flatMap(p =>
+    function nuevoMazo(){
+        simbolos.flatMap(p =>
         valores.map(e=>combinations.push({combination: e + p})))
+            }
+
+    const mazo = new Mazo()
+        console.log (mezclar())
+
+    function cartaCroupier(){
+        manoCroupier = combinations.slice(8,13)
+        return (manoCroupier)
+            }
+
+        console.log(cartaCroupier())
+            
+        divInicio.remove()
+
+
+    function cartaJuadores(){
+        manoJugador = combinations.slice(1,3)
+        return (manoJugador)}
+        
+        console.log(cartaJuadores())
 }
+}}
 
-const mazo = new Mazo()
-console.log (mezclar())
-
-
-function cartaJuadores(){
-   manoJugador = combinations.slice(1,3)
-   return (manoJugador)
-}
-
-function cartaCroupier(){
-    manoCroupier = combinations.slice(8,13)
-    return (manoCroupier)
-}
-
-console.log(cartaJuadores())
-console.log(cartaCroupier())
-
-function empezarJuego(){
-
-}
-
-
+)
