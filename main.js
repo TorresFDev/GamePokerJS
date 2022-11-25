@@ -21,7 +21,7 @@ class Jugador {
 }
 
 // VARIABLES - ARRAYS
-const simbolos = ["-Corazones", "-Trebol", "-Picas", "-Diamantes"];
+const simbolos = ["♥", "♣", "♠", "♦"];
 const valores = [
   "A",
   "2",
@@ -56,6 +56,7 @@ function mezclar() {
   return combinations;
 }
 
+
 function cartaCroupier() {
   let randCard = between(0, cantMax) - 5;
   let manoCroupier = [];
@@ -88,8 +89,7 @@ document.getElementById("form").addEventListener("submit", (e) => {
   const password = document.getElementById("password");
   const divForm = document.getElementById("formRegistro");
   const divInicio = document.getElementById("divInicio");
-  const cantidadJugadores = Number(
-    document.getElementById("cantidadJugadores").value
+  const cantidadJugadores = Number(document.getElementById("cantidadJugadores").value
   );
 
   if (
@@ -114,8 +114,8 @@ document.getElementById("form").addEventListener("submit", (e) => {
       apellido,
     };
 
-    console.log(usuario);
-    console.log(usuario.nombre);
+    // console.log(usuario);
+    // console.log(usuario.nombre);
     localStorage.setItem("usuario", JSON.stringify(usuario));
 
     const nombreInicio = document.createElement("h2");
@@ -139,7 +139,9 @@ document.getElementById("form").addEventListener("submit", (e) => {
 
     //inicio del juego al tocar el boton SI
     botonSi.onclick = () => {
+
       mezclar();
+      console.log(mezclar())
       divInicio.remove();
 
       const jugadoresActivos = [];
@@ -156,14 +158,14 @@ document.getElementById("form").addEventListener("submit", (e) => {
 });
 
 // VALIDAR
-function validarEscaleraColor(jugador) {
+
     /* 
     EXTRAES CARTAS DE MANOJUGADOR
-    ORDENAS LAS CARTAS
-    VES QUE SIGAN UN PATRON 1 2 3 4 5
-    USAR EXPRESIONES REGEX 
+    ORDENAR LAS CARTAS
+    VES QUE SIGAN UN PATRON 10,j,q,k,as
+    USAR EXPRESIONES REGEX }
     
-    */
-}
+*/
 
-validarEscaleraColor(jugadoresActivos[0])
+
+// validarEscaleraColor(jugadoresActivos[0])
